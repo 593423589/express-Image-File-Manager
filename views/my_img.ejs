@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no,width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<a href="../" class="btn btn-primary">全部文件</a>
+<a href="/upload" id="new" class="btn btn-success">上传</a>
+<a href="../" class="btn btn-danger">返回</a>
+<div class="container">
+    <div class="row">
+        <% for(var i = 0; i < images.length ;i ++) { %>
+            <div class="col-xs-6 col-md-3">
+                <a href="" class="thumbnail my_img">
+                    <img style="width:100px ; padding-bottom: 20px" src="<%= images[i]%>" alt="">
+
+                </a>
+            </div>
+            </span>
+        <% }%>
+    </div>
+</div>
+
+<br>
+
+</body>
+<script>
+    $(".my_img").click(function (e) {
+        if(confirm("确认要删除嘛")){
+            $.post("/delImg",{name:e.target.src,dir:document.URL});
+        }
+        else {
+            alert("已取消")
+        }
+    })
+</script>
+</html>

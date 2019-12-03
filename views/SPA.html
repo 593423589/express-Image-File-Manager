@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="AngularJS.js"></script>
+    <script src="AngularJS-route.js"></script>
+    <title>Document</title>
+</head>
+<body ng-app="mymodule">
+<div> 欢迎来到angularJS</div>
+<a href="#/detail">你点我个试试</a>
+<a href="#">点我回去</a>
+    <div ng-view>
+
+    </div>
+</body>
+<script>
+    angular.module('mymodule',['ng','ngRoute']).config(function ($routeProvider) {
+        $routeProvider.
+            when('/detail',{
+            templateUrl:'detail.html',
+            controller: 'mycontrol'
+        }).
+        when('/d',{
+            templateUrl:'detail.html'
+        })
+    }).controller('mycontrol',function ($scope,$http) {
+        $http.get('detail.php').success(function (data) {
+            $scope.mydata = data;
+        })
+    });
+    // angular.module('mymodule',['ng'])
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传</title>
+    <script src="/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<br>
+<a href="../" class="btn btn-danger">返回</a>
+<br>
+    选择文件夹<br>
+<select name="files" id="sel">
+    <option value="请选择">请选择</option>
+    <% for(var i = 0;i< albums.length;i++) { %>
+        <option value="<%=albums[i] %>"><%=albums[i] %></option>
+    <%}%>
+    </select>
+<br>
+<br>
+
+    <form id="testform" action="/upload" method="post" enctype="multipart/form-data" >
+     <input type="file" name="upload" multiple="multiple">
+        <input  name="position" style="display: none;"  id="position" type="text"  value="">
+        <br>
+        <br>
+
+        <input type="submit" class="btn btn-success" name="sub" value="提交">
+
+    </form>
+<br>
+<br>
+<!--    <div id="btn" class="btn btn-success">Ajax提交</div>-->
+</body>
+<script>
+    $("#btn").click(function () {
+        // $.post("http://localhost:8888/upload", $("#testform").serialize());
+
+    });
+
+    // $.get('upload',function (data) {
+    //     for (var i = 0 ; i < data.length; i++)
+    //     $("#sel").append("<option value='"+data[i]+"'>"+data[i]+"</option>")
+    // });
+    (position=()=>{
+        var val = $("#sel").val();
+        $("#position").val(val)
+    })();
+    $("#sel").change(
+      ()=>{
+          position();
+      }
+    )
+
+
+</script>
+</html>

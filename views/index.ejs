@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no,width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <script src="/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+    <a href="#" class="btn btn-primary">全部文件</a>
+    <a href="/create" class="btn btn-success">新建</a>
+    <a href="/upload" id="new" class="btn btn-success">上传</a>
+    <a href="/deldir" class="btn btn-danger deldir">删除</a>
+    <div class="container">
+        <div class="row">
+            <% for(var i = 0; i < albums.length ;i ++) { %>
+            <div class="col-xs-6 col-md-3">
+                <a href="<%=albums[i]%>" class="thumbnail">
+                    <img style="width:100px" src="./img/wenjianjia.jpg" alt="">
+
+                </a>
+                <h4>&nbsp;&nbsp;&nbsp; <%= albums[i]%></h4>
+
+            </div>
+            <% }%>
+        </div>
+
+
+    </div>
+
+    <br>
+
+</body>
+<script>
+    // $.get('/news',function (data) {
+    //     console.log(data);
+    // })
+
+    var promise  = new Promise(resolve => {
+        $.get('/news',function (data) {
+            if(data=="err"){
+                throw new Error('data')
+            }
+            resolve(data)
+        });
+    });
+    promise.then(data=>console.log(data)).catch((err)=>console.log(err))
+</script>
+</html>
